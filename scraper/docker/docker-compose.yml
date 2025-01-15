@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: clothes_scraper
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  scraper:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    restart: always
+    depends_on:
+      - db
+    environment:
+      DB_CONN_STRING: "postgres://postgres:secret@db:5432/clothes_scraper?sslmode=disable"
+    # Optionally, add volumes or other configurations
+
+volumes:
+  db-data:

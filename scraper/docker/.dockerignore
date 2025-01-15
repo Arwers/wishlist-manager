@@ -1,0 +1,12 @@
+# Binaries
+scraper
+
+# Go modules
+*.mod
+*.sum
+
+# Git
+.git
+
+# Docker files
+docker/

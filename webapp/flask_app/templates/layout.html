@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Wishlist Manager</h1>
+        <nav>
+            <a href="{{ url_for('wishlist') }}">Wishlist</a>
+            <a href="{{ url_for('notifications_page') }}">Notifications</a>
+        </nav>
+    </header>
+    <main>
+        {{ content|safe }}
+    </main>
+    <footer>
+        <p>&copy; 2025 Wishlist Manager</p>
+    </footer>
+</body>
+</html>

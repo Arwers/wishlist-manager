@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Wishlist Manager</h1>
+        <nav>
+            <a href="{{ url_for('wishlist') }}" class="nav-btn">Wishlist</a>
+            <a href="{{ url_for('notifications_page') }}" class="nav-btn">Settings</a>
+            <a href="{{ url_for('notifications_page') }}" class="nav-btn">About</a>
+            <a href="{{ url_for('notifications_page') }}" class="nav-btn">Log out</a>
+        </nav>
+    </header>
+    <main>
+        <div class="actions">
+            <button class="action-btn">Add New Product</button>
+            <button class="action-btn">Refresh</button>
+            <button class="action-btn">Setup Notification</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Brand</th>
+                    <th>Item name</th>
+                    <th>Price</th>
+                    <th>Date Added</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr class="{{ 'on-sale' if item.on_sale else '' }}">
+                    <td>{{ item.brand }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>${{ item.price }}</td>
+                    <td>{{ item.date_added }}</td>
+                    <td><a href="{{ item.store_url }}" class="btn">Go to store</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p>&copy; 2025 Wishlist Manager</p>
+    </footer>
+</body>
+</html>
